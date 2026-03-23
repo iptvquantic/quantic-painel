@@ -8,7 +8,6 @@
 <style>
   :root {
     --green: #00ff88;
-    --green-dim: #00cc66;
     --green-glow: rgba(0,255,136,0.18);
     --red: #ff4444;
     --yellow: #ffd700;
@@ -21,121 +20,107 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--bg); color:var(--text); font-family:'Rajdhani',sans-serif; min-height:100vh; display:flex; }
 
-  /* SIDEBAR */
-  .sidebar {
-    width:240px; min-height:100vh; background:#0d150d;
-    border-right:1px solid var(--border); display:flex; flex-direction:column;
-    position:fixed; left:0; top:0; bottom:0; z-index:10;
-  }
+  .sidebar { width:240px; min-height:100vh; background:#0d150d; border-right:1px solid var(--border);
+    display:flex; flex-direction:column; position:fixed; left:0; top:0; bottom:0; z-index:10; }
   .logo-area { padding:24px 20px 20px; border-bottom:1px solid var(--border); }
   .logo-box { display:flex; align-items:center; gap:12px; }
   .logo-icon { width:38px; height:38px; background:var(--green); border-radius:8px;
     display:flex; align-items:center; justify-content:center; color:#000; font-size:20px; font-weight:900; }
-  .logo-text { line-height:1.1; }
   .logo-text .brand { font-size:18px; font-weight:700; color:var(--green); letter-spacing:2px; }
-  .logo-text .sub { font-size:10px; color:var(--muted); letter-spacing:3px; text-transform:uppercase; }
-
+  .logo-text .sub { font-size:10px; color:var(--muted); letter-spacing:3px; }
   .user-area { padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
   .avatar { width:34px; height:34px; border-radius:50%; background:var(--green); color:#000;
-    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; }
+    display:flex; align-items:center; justify-content:center; font-weight:700; }
   .user-info .uname { font-size:14px; font-weight:600; color:var(--green); }
   .user-info .urole { font-size:11px; color:var(--muted); letter-spacing:1px; }
-
   .nav-section { padding:16px 14px 8px; }
   .nav-label { font-size:10px; color:var(--muted); letter-spacing:2px; padding:0 6px 8px; }
   .nav-item { display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:6px;
-    cursor:pointer; font-size:13px; font-weight:600; color:var(--muted); transition:all .2s; margin-bottom:2px; text-decoration:none; }
-  .nav-item:hover { background:var(--green-glow); color:var(--green); }
-  .nav-item.active { background:var(--green-glow); color:var(--green); border-left:2px solid var(--green); }
+    cursor:pointer; font-size:13px; font-weight:600; color:var(--muted); transition:all .2s;
+    margin-bottom:2px; text-decoration:none; }
+  .nav-item:hover, .nav-item.active { background:var(--green-glow); color:var(--green); }
+  .nav-item.active { border-left:2px solid var(--green); }
   .nav-item .badge { margin-left:auto; background:var(--green); color:#000; font-size:10px;
     padding:1px 7px; border-radius:10px; font-weight:700; }
-
   .mac-used { margin:auto 14px 0; padding:14px; background:var(--card); border-radius:8px;
     border:1px solid var(--border); margin-bottom:10px; }
-  .mac-used .mu-label { font-size:10px; color:var(--muted); letter-spacing:2px; margin-bottom:8px; }
+  .mu-label { font-size:10px; color:var(--muted); letter-spacing:2px; margin-bottom:8px; }
   .mac-bar-bg { background:#0a1a0a; border-radius:4px; height:6px; margin-bottom:6px; }
   .mac-bar { background:var(--green); height:6px; border-radius:4px; transition:width .5s; }
-  .mac-count { font-size:12px; color:var(--text); }
-  .mac-count span { color:var(--muted); }
-
   .btn-sair { margin:0 14px 20px; padding:10px; background:transparent; border:1px solid #ff444433;
     color:#ff4444; border-radius:6px; cursor:pointer; font-family:'Rajdhani',sans-serif;
     font-size:13px; font-weight:600; letter-spacing:1px; width:calc(100% - 28px); transition:all .2s; }
   .btn-sair:hover { background:#ff444422; }
 
-  /* MAIN */
   .main { margin-left:240px; flex:1; padding:30px; }
   .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
-  .page-title { font-size:26px; font-weight:700; color:#fff; letter-spacing:1px; }
+  .page-title { font-size:26px; font-weight:700; color:#fff; }
   .btn-novo { background:var(--green); color:#000; border:none; padding:10px 20px;
     border-radius:6px; font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:700;
-    cursor:pointer; letter-spacing:1px; transition:all .2s; display:flex; align-items:center; gap:6px; }
+    cursor:pointer; letter-spacing:1px; transition:all .2s; }
   .btn-novo:hover { background:#00ffaa; box-shadow:0 0 20px var(--green-glow); }
 
-  /* CARDS */
   .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:30px; }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px;
-    position:relative; overflow:hidden; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px; position:relative; overflow:hidden; }
   .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
   .card.green::before { background:linear-gradient(90deg,transparent,var(--green),transparent); }
   .card.blue::before { background:linear-gradient(90deg,transparent,#00aaff,transparent); }
   .card.yellow::before { background:linear-gradient(90deg,transparent,var(--yellow),transparent); }
   .card.red::before { background:linear-gradient(90deg,transparent,var(--red),transparent); }
   .card-label { font-size:10px; color:var(--muted); letter-spacing:2px; margin-bottom:10px; }
-  .card-value { font-size:36px; font-weight:700; font-family:'Share Tech Mono',monospace; line-height:1; margin-bottom:6px; }
+  .card-value { font-size:36px; font-weight:700; font-family:'Share Tech Mono',monospace; margin-bottom:6px; }
   .card.green .card-value { color:var(--green); }
   .card.blue .card-value { color:#00aaff; }
   .card.yellow .card-value { color:var(--yellow); }
   .card.red .card-value { color:var(--red); }
   .card-sub { font-size:11px; color:var(--muted); }
 
-  /* TABLE */
   .section-title { font-size:16px; font-weight:700; color:var(--green); letter-spacing:1px;
     margin-bottom:16px; display:flex; align-items:center; gap:8px; }
-  .section-title::before { content:''; width:3px; height:18px; background:var(--green); border-radius:2px; display:block; }
+  .section-title::before { content:''; width:3px; height:18px; background:var(--green); border-radius:2px; }
 
-  .table-wrap { background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
-  table { width:100%; border-collapse:collapse; }
-  thead th { padding:12px 16px; font-size:10px; letter-spacing:2px; color:var(--muted);
-    text-align:left; border-bottom:1px solid var(--border); background:#0d150d; }
+  .table-wrap { background:var(--card); border:1px solid var(--border); border-radius:10px; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; min-width:900px; }
+  thead th { padding:12px 14px; font-size:10px; letter-spacing:2px; color:var(--muted);
+    text-align:left; border-bottom:1px solid var(--border); background:#0d150d; white-space:nowrap; }
   tbody tr { border-bottom:1px solid #0f1f0f; transition:background .15s; }
   tbody tr:last-child { border-bottom:none; }
   tbody tr:hover { background:#0f1f0f; }
-  tbody td { padding:14px 16px; font-size:13px; font-weight:600; }
+  tbody td { padding:12px 14px; font-size:13px; font-weight:600; }
   .td-id { color:var(--muted); font-family:'Share Tech Mono',monospace; }
   .td-mac { color:var(--green); font-family:'Share Tech Mono',monospace; font-size:12px; }
-  .td-iptv { color:#aaa; font-family:'Share Tech Mono',monospace; font-size:12px; }
+  .td-mono { color:#aaa; font-family:'Share Tech Mono',monospace; font-size:12px;
+    max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .badge-ativo { background:#00ff8822; color:var(--green); border:1px solid var(--green);
-    padding:3px 12px; border-radius:20px; font-size:11px; letter-spacing:1px; }
+    padding:3px 12px; border-radius:20px; font-size:11px; white-space:nowrap; }
   .badge-inativo { background:#ff444422; color:var(--red); border:1px solid var(--red);
-    padding:3px 12px; border-radius:20px; font-size:11px; letter-spacing:1px; }
-
+    padding:3px 12px; border-radius:20px; font-size:11px; white-space:nowrap; }
   .empty-state { text-align:center; padding:40px; color:var(--muted); font-size:14px; }
 
-  /* MODAL */
-  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.8); display:flex;
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex;
     align-items:center; justify-content:center; z-index:100; opacity:0; pointer-events:none; transition:opacity .3s; }
   .modal-overlay.open { opacity:1; pointer-events:all; }
   .modal { background:#0d150d; border:1px solid var(--green); border-radius:12px; padding:28px;
-    width:420px; max-width:95vw; transform:translateY(20px); transition:transform .3s; }
+    width:480px; max-width:95vw; max-height:90vh; overflow-y:auto;
+    transform:translateY(20px); transition:transform .3s; }
   .modal-overlay.open .modal { transform:translateY(0); }
   .modal-title { font-size:18px; font-weight:700; color:var(--green); margin-bottom:20px; letter-spacing:1px; }
-  .form-group { margin-bottom:16px; }
-  .form-group label { display:block; font-size:11px; color:var(--muted); letter-spacing:2px; margin-bottom:6px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .form-group { margin-bottom:14px; }
+  .form-group label { display:block; font-size:10px; color:var(--muted); letter-spacing:2px; margin-bottom:6px; }
   .form-group input, .form-group select {
     width:100%; background:#0a0f0a; border:1px solid var(--border); border-radius:6px;
     padding:10px 12px; color:var(--text); font-family:'Rajdhani',sans-serif; font-size:14px;
     font-weight:600; outline:none; transition:border .2s; }
   .form-group input:focus, .form-group select:focus { border-color:var(--green); }
   .form-group select option { background:#0d150d; }
+  .divider { border:none; border-top:1px solid var(--border); margin:14px 0; }
   .modal-btns { display:flex; gap:10px; margin-top:20px; }
   .btn-cancel { flex:1; padding:10px; background:transparent; border:1px solid var(--border);
-    color:var(--muted); border-radius:6px; cursor:pointer; font-family:'Rajdhani',sans-serif;
-    font-size:14px; font-weight:600; transition:all .2s; }
+    color:var(--muted); border-radius:6px; cursor:pointer; font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:600; }
   .btn-cancel:hover { border-color:var(--red); color:var(--red); }
   .btn-save { flex:1; padding:10px; background:var(--green); border:none; color:#000;
-    border-radius:6px; cursor:pointer; font-family:'Rajdhani',sans-serif;
-    font-size:14px; font-weight:700; letter-spacing:1px; transition:all .2s; }
+    border-radius:6px; cursor:pointer; font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:700; letter-spacing:1px; }
   .btn-save:hover { background:#00ffaa; }
   .btn-save:disabled { opacity:.5; cursor:not-allowed; }
 
@@ -146,23 +131,16 @@
   .toast.error { background:var(--red); color:#fff; }
 
   .loading-row td { text-align:center; color:var(--muted); padding:30px; font-size:13px; }
-
-  /* Actions */
-  .btn-del { background:transparent; border:none; color:#ff444488; cursor:pointer;
-    font-size:16px; padding:4px 8px; transition:color .2s; }
+  .btn-del { background:transparent; border:none; color:#ff444866; cursor:pointer; font-size:15px; padding:4px 6px; }
   .btn-del:hover { color:var(--red); }
   .btn-toggle { background:transparent; border:1px solid var(--border); color:var(--muted);
     cursor:pointer; font-size:11px; padding:4px 10px; border-radius:4px;
-    font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:1px; transition:all .2s; }
+    font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:1px; }
   .btn-toggle:hover { border-color:var(--yellow); color:var(--yellow); }
-
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-  .loading-dot { animation:pulse 1.2s infinite; }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="logo-area">
     <div class="logo-box">
@@ -183,7 +161,7 @@
   <div class="nav-section">
     <div class="nav-label">PRINCIPAL</div>
     <a class="nav-item active" href="#">⊞ Dashboard <span class="badge" id="badge-count">0</span></a>
-    <a class="nav-item" href="#" onclick="document.getElementById('btn-novo').click();return false;">👤 Usuários</a>
+    <a class="nav-item" href="#" onclick="openModal();return false;">👤 Usuários</a>
   </div>
   <div class="nav-section">
     <div class="nav-label">SISTEMA</div>
@@ -193,18 +171,16 @@
   <div class="mac-used">
     <div class="mu-label">MACS UTILIZADOS</div>
     <div class="mac-bar-bg"><div class="mac-bar" id="mac-bar" style="width:0%"></div></div>
-    <div class="mac-count"><span id="mac-used">0</span> <span>/ 10</span></div>
+    <div class="mac-count"><span id="mac-used">0</span> <span style="color:var(--muted)"> / 10</span></div>
   </div>
   <button class="btn-sair" onclick="if(confirm('Sair?'))location.reload()">↪ SAIR</button>
 </aside>
 
-<!-- MAIN -->
 <main class="main">
   <div class="topbar">
     <div class="page-title">Dashboard</div>
     <button class="btn-novo" id="btn-novo" onclick="openModal()">＋ Novo Usuário</button>
   </div>
-
   <div class="cards">
     <div class="card green">
       <div class="card-label">MACS ATIVOS</div>
@@ -227,22 +203,17 @@
       <div class="card-sub">sem acesso</div>
     </div>
   </div>
-
   <div class="section-title">Últimos Usuários</div>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>NOME</th>
-          <th>MAC</th>
-          <th>USUÁRIO IPTV</th>
-          <th>STATUS</th>
-          <th>AÇÕES</th>
+          <th>ID</th><th>NOME</th><th>MAC</th><th>DNS / SERVIDOR</th>
+          <th>USUÁRIO</th><th>SENHA</th><th>STATUS</th><th>AÇÕES</th>
         </tr>
       </thead>
       <tbody id="tbody">
-        <tr class="loading-row"><td colspan="6"><span class="loading-dot">Carregando...</span></td></tr>
+        <tr class="loading-row"><td colspan="8">Carregando...</td></tr>
       </tbody>
     </table>
   </div>
@@ -253,27 +224,41 @@
   <div class="modal">
     <div class="modal-title">＋ Novo Usuário</div>
     <div class="form-group">
-      <label>NOME</label>
-      <input type="text" id="f-nome" placeholder="Ex: Minha Casa">
+      <label>NOME DO CLIENTE</label>
+      <input type="text" id="f-nome" placeholder="Ex: Minha Casa, João Silva...">
     </div>
     <div class="form-group">
-      <label>MAC DO DISPOSITIVO</label>
-      <input type="text" id="f-mac" placeholder="AA:BB:CC:DD:EE:FF" style="text-transform:uppercase">
+      <label>MAC DO DISPOSITIVO (TV)</label>
+      <input type="text" id="f-mac" placeholder="AA:BB:CC:DD:EE:FF" oninput="this.value=this.value.toUpperCase()">
     </div>
+    <hr class="divider">
     <div class="form-group">
-      <label>USUÁRIO IPTV</label>
-      <input type="text" id="f-iptv" placeholder="Ex: 123456789">
+      <label>DNS / URL DO SERVIDOR</label>
+      <input type="text" id="f-dns" placeholder="http://servidor.com:8080">
     </div>
-    <div class="form-group">
-      <label>CHAVE</label>
-      <input type="text" id="f-chave" placeholder="Chave de acesso">
+    <div class="form-row">
+      <div class="form-group">
+        <label>USUÁRIO IPTV</label>
+        <input type="text" id="f-usuario" placeholder="usuario123">
+      </div>
+      <div class="form-group">
+        <label>SENHA IPTV</label>
+        <input type="text" id="f-senha" placeholder="senha123">
+      </div>
     </div>
-    <div class="form-group">
-      <label>STATUS</label>
-      <select id="f-status">
-        <option value="ativo">Ativo</option>
-        <option value="inativo">Inativo</option>
-      </select>
+    <hr class="divider">
+    <div class="form-row">
+      <div class="form-group">
+        <label>CHAVE DE ACESSO</label>
+        <input type="text" id="f-chave" placeholder="Opcional">
+      </div>
+      <div class="form-group">
+        <label>STATUS</label>
+        <select id="f-status">
+          <option value="ativo">Ativo</option>
+          <option value="inativo">Inativo</option>
+        </select>
+      </div>
     </div>
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
@@ -288,15 +273,10 @@
 const SUPABASE_URL = 'https://nxkdsniiinvgdqhfweji.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_NhGIcu5FV-cFjQPj-2jETw_QPSxMlKr';
 const LIMIT = 10;
-
-const headers = {
-  'Content-Type': 'application/json',
-  'apikey': SUPABASE_KEY,
-  'Authorization': 'Bearer ' + SUPABASE_KEY
-};
+const H = { 'Content-Type':'application/json', 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+SUPABASE_KEY };
 
 function api(path, opts={}) {
-  return fetch(SUPABASE_URL + '/rest/v1/' + path, { headers, ...opts });
+  return fetch(SUPABASE_URL+'/rest/v1/'+path, { headers:H, ...opts });
 }
 
 async function loadData() {
@@ -304,121 +284,97 @@ async function loadData() {
     const res = await api('usuarios?select=*&order=id.desc');
     const data = await res.json();
     if (!Array.isArray(data)) { renderError(); return; }
-
-    const ativos = data.filter(u => u.status === 'ativo').length;
-    const inativos = data.filter(u => u.status === 'inativo').length;
+    const ativos = data.filter(u=>u.status==='ativo').length;
+    const inativos = data.filter(u=>u.status==='inativo').length;
     const total = data.length;
-    const slots = Math.max(0, LIMIT - total);
-
     document.getElementById('cnt-ativos').textContent = ativos;
     document.getElementById('cnt-total').textContent = total;
-    document.getElementById('cnt-slots').textContent = slots;
+    document.getElementById('cnt-slots').textContent = Math.max(0,LIMIT-total);
     document.getElementById('cnt-inativos').textContent = inativos;
     document.getElementById('badge-count').textContent = total;
     document.getElementById('mac-used').textContent = total;
-    document.getElementById('mac-bar').style.width = Math.min(100, (total/LIMIT)*100) + '%';
-
+    document.getElementById('mac-bar').style.width = Math.min(100,(total/LIMIT)*100)+'%';
     const tbody = document.getElementById('tbody');
-    if (data.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state">Nenhum usuário cadastrado ainda.</div></td></tr>';
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state">Nenhum usuário cadastrado ainda.</div></td></tr>';
       return;
     }
-    tbody.innerHTML = data.map(u => `
+    tbody.innerHTML = data.map(u=>`
       <tr>
         <td class="td-id">#${u.id}</td>
         <td style="font-weight:700">${u.nome}</td>
         <td class="td-mac">${u.mac}</td>
-        <td class="td-iptv">${u.usuario_iptv}</td>
+        <td class="td-mono" title="${u.dns||''}">${u.dns||'-'}</td>
+        <td class="td-mono">${u.usuario||'-'}</td>
+        <td class="td-mono">${u.senha||'-'}</td>
         <td><span class="${u.status==='ativo'?'badge-ativo':'badge-inativo'}">● ${u.status==='ativo'?'Ativo':'Inativo'}</span></td>
-        <td>
+        <td style="white-space:nowrap">
           <button class="btn-toggle" onclick="toggleStatus(${u.id},'${u.status}')">${u.status==='ativo'?'Desativar':'Ativar'}</button>
-          <button class="btn-del" onclick="deletar(${u.id})" title="Excluir">✕</button>
+          <button class="btn-del" onclick="deletar(${u.id})">✕</button>
         </td>
-      </tr>
-    `).join('');
-  } catch(e) {
-    renderError();
-  }
+      </tr>`).join('');
+  } catch(e) { renderError(); }
 }
 
 function renderError() {
-  document.getElementById('tbody').innerHTML = '<tr class="loading-row"><td colspan="6">Erro ao carregar dados.</td></tr>';
+  document.getElementById('tbody').innerHTML='<tr class="loading-row"><td colspan="8">Erro ao carregar dados.</td></tr>';
 }
 
 async function salvarUsuario() {
   const nome = document.getElementById('f-nome').value.trim();
   const mac = document.getElementById('f-mac').value.trim().toUpperCase();
-  const iptv = document.getElementById('f-iptv').value.trim();
+  const dns = document.getElementById('f-dns').value.trim();
+  const usuario = document.getElementById('f-usuario').value.trim();
+  const senha = document.getElementById('f-senha').value.trim();
   const chave = document.getElementById('f-chave').value.trim();
   const status = document.getElementById('f-status').value;
-
-  if (!nome || !mac) { showToast('Preencha Nome e MAC!', true); return; }
-
+  if (!nome||!mac) { showToast('Preencha Nome e MAC!',true); return; }
   const btn = document.getElementById('btn-save');
-  btn.disabled = true; btn.textContent = 'Salvando...';
-
+  btn.disabled=true; btn.textContent='Salvando...';
   try {
     const res = await api('usuarios', {
-      method: 'POST',
-      body: JSON.stringify({ nome, mac, usuario_iptv: iptv, chave, status }),
-      headers: { ...headers, 'Prefer': 'return=minimal' }
+      method:'POST',
+      body: JSON.stringify({nome, mac, dns, usuario, usuario_iptv:usuario, senha, chave, status}),
+      headers: {...H,'Prefer':'return=minimal'}
     });
-
-    if (res.ok || res.status === 201) {
-      closeModal();
-      showToast('Usuário salvo com sucesso!');
-      loadData();
+    if (res.ok||res.status===201) {
+      closeModal(); showToast('✅ Usuário salvo!'); loadData();
     } else {
       const err = await res.json();
-      showToast(err.message || 'Erro ao salvar.', true);
+      showToast(err.message||'Erro ao salvar.',true);
     }
-  } catch(e) {
-    showToast('Erro de conexão.', true);
-  }
-  btn.disabled = false; btn.textContent = 'SALVAR';
+  } catch(e) { showToast('Erro de conexão.',true); }
+  btn.disabled=false; btn.textContent='SALVAR';
 }
 
 async function deletar(id) {
   if (!confirm('Excluir este usuário?')) return;
-  await api(`usuarios?id=eq.${id}`, { method: 'DELETE' });
-  showToast('Usuário excluído.');
-  loadData();
+  await api('usuarios?id=eq.'+id, {method:'DELETE'});
+  showToast('Usuário excluído.'); loadData();
 }
 
 async function toggleStatus(id, atual) {
-  const novo = atual === 'ativo' ? 'inativo' : 'ativo';
-  await api(`usuarios?id=eq.${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ status: novo }),
-    headers: { ...headers, 'Prefer': 'return=minimal' }
-  });
-  showToast(`Status alterado para ${novo}.`);
-  loadData();
+  const novo = atual==='ativo'?'inativo':'ativo';
+  await api('usuarios?id=eq.'+id, {method:'PATCH', body:JSON.stringify({status:novo}), headers:{...H,'Prefer':'return=minimal'}});
+  showToast('Status alterado para '+novo+'.'); loadData();
 }
 
-function openModal() {
-  document.getElementById('modal').classList.add('open');
-  document.getElementById('f-nome').focus();
-}
+function openModal() { document.getElementById('modal').classList.add('open'); document.getElementById('f-nome').focus(); }
 function closeModal() {
   document.getElementById('modal').classList.remove('open');
-  ['f-nome','f-mac','f-iptv','f-chave'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('f-status').value = 'ativo';
+  ['f-nome','f-mac','f-dns','f-usuario','f-senha','f-chave'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('f-status').value='ativo';
 }
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-document.getElementById('modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
-function showToast(msg, error=false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast' + (error?' error':'') + ' show';
-  setTimeout(() => t.classList.remove('show'), 3000);
+function showToast(msg,error=false) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast'+(error?' error':'')+' show';
+  setTimeout(()=>t.classList.remove('show'),3000);
 }
 
 loadData();
-setInterval(loadData, 15000);
+setInterval(loadData,15000);
 </script>
 </body>
 </html>
